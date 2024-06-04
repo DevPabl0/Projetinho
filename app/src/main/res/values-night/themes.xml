@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Projetinho" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primaria</item>r
+
+        <item name="colorSecondary">@color/secundaria</item>
+
+        <item name="android:statusBarColor">@color/primaria</item>
+    </style>
+</resources>
