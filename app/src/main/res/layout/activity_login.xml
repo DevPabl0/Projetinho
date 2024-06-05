@@ -27,7 +27,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BIKE SP"
+            android:text="@string/bike"
             android:textStyle="bold"
             android:fontFamily="sans-serif-medium"
             android:textSize="32sp"
@@ -87,18 +87,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lembrar-se"
 
-                    android:layout_centerVertical="true"/>
-
-
-            </RelativeLayout>
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"/>
@@ -108,6 +97,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="Login"
+                app:backgroundTint="@color/primaria"
                 android:textSize="24dp">
 
             </com.google.android.material.button.MaterialButton>
