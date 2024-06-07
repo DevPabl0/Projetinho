@@ -23,7 +23,7 @@ public class Splash extends AppCompatActivity {
             return insets;
         });
 
-        // Adicione um atraso usando a classe Handler
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
