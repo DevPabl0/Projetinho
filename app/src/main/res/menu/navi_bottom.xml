@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/Bottom_Home"
-        android:title="Home"
+    <item
+        android:id="@+id/Bottom_Home"
         android:icon="@drawable/home"
-        />
-
-
+        android:title="Home" />
+    <item
+        android:id="@+id/Bottom_Support"
+        android:icon="@drawable/support"
+        android:title="support" />
+    <item
+        android:id="@+id/Bottom_Settings"
+        android:icon="@drawable/config"
+        android:title="settings" />
 
 
 </menu>

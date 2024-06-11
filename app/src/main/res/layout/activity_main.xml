@@ -2,66 +2,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/TabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/TabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-            
-            <com.google.android.material.tabs.TabItem
-                android:text="Tela 1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
 
-            </com.google.android.material.tabs.TabItem>
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tela 1">
 
-            <com.google.android.material.tabs.TabItem
-                android:text="Tela 2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+        </com.google.android.material.tabs.TabItem>
 
-            </com.google.android.material.tabs.TabItem>
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tela 2">
 
-            <com.google.android.material.tabs.TabItem
-                android:text="Tela 3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+        </com.google.android.material.tabs.TabItem>
 
-            </com.google.android.material.tabs.TabItem>
-            
-        </com.google.android.material.tabs.TabLayout>
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tela 3">
+
+        </com.google.android.material.tabs.TabItem>
+
+    </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/VierPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
-    
+
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:visibility="gone"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:visibility="gone" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/BottomNavigation"
-        />
-
-
+        android:layout_width="match_parent"
+        app:menu="@menu/navi_bottom"
+        android:layout_height="wrap_content" />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/my_recycler_view"
-        android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />
 
 </LinearLayout>
