@@ -19,7 +19,6 @@
             android:orientation="vertical"
             android:padding="28dp">
 
-
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -67,10 +66,11 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/user"
+                    android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/certo_icon"
+                    android:hint="Coloque rpa@gmail.com"
                     android:inputType="textEmailAddress" />
 
                 <View
@@ -87,6 +87,7 @@
                     android:id="@+id/senha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Coloque 123"
                     android:inputType="textPassword" />
 
 
