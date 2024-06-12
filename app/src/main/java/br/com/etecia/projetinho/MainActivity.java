@@ -89,20 +89,21 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             FrameLayout.setVisibility(View.VISIBLE);
             ViewPager.setVisibility(View.GONE);
-            switch (item.getItemId()){
-                case R.id.Bottom_Home:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout, new Home()).commit();
-                    return true;
-                case R.id.Bottom_Support:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout, new Support()).commit();
-                    return true;
-                case R.id.Bottom_Settings:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout, new Settings()).commit();
-                    return true;
+            int id = item.getItemId();
+            if (id == R.id.Bottom_Home) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout, new Home()).commit();
+                return true;
+            } else if (id == R.id.Bottom_Support) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout, new Support()).commit();
+                return true;
+            } else if (id == R.id.Bottom_Settings) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout, new Settings()).commit();
+                return true;
             }
             return false;
         }
     });
+
 
 
 
