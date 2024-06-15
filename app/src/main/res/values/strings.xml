@@ -8,8 +8,16 @@
 
     <string name="bike">BIKE SP</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Fragment_home">Tela home</string>
+    <string name="Fragment_support">Tela support</string>
+    <string name="Fragment_settings">Tela settings</string>
     <string name="Home">Home</string>
     <string name="Support">Support</string>
     <string name="Settings">Settings</string>
+    <string name="Tela1">Tela 1</string>
+    <string name="Tela2">Tela 2</string>
+    <string name="Tela3">Tela 3</string>
+    <string name="Tela01">Tela 01</string>
+    <string name="Tela02">Tela 02</string>
+    <string name="Tela03">Tela 03</string>
 </resources>
