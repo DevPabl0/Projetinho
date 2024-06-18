@@ -101,7 +101,7 @@ public class Login extends AppCompatActivity {
 
             } catch (Exception e) {
                 e.printStackTrace();
-                Log.e("LoginActivity", "Error during login process", e);
+                Log.e("LoginActivity", "Erro no processo de login", e);
             } finally {
                 if (reader != null) {
                     try {
