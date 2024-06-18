@@ -66,7 +66,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/email"
+                    android:id="@+id/edt_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/certo_icon"
@@ -84,7 +84,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/senha"
+                    android:id="@+id/edt_senha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Coloque 123"
@@ -96,7 +96,7 @@
                     android:layout_height="100dp" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/BtnLog"
+                    android:id="@+id/Btn_login"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:text="Login"
