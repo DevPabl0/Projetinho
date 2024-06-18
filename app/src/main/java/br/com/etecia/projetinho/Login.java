@@ -1,5 +1,6 @@
 package br.com.etecia.projetinho;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -39,7 +40,7 @@ public class Login extends AppCompatActivity {
         final String password = senhaEditText.getText().toString().trim();
 
         if (email.isEmpty() || password.isEmpty()) {
-            runOnUiThread(() -> Toast.makeText(getApplicationContext(), "Email and password cannot be empty", Toast.LENGTH_SHORT).show());
+            runOnUiThread(() -> Toast.makeText(getApplicationContext(), "Campos vazios!", Toast.LENGTH_LONG).show());
             return;
         }
 
@@ -85,6 +86,10 @@ public class Login extends AppCompatActivity {
                     try {
                         if (jsonResponse.getBoolean("success")) {
                             Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
+
+                            Intent intent = new Intent(this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
                         } else {
                             Toast.makeText(getApplicationContext(), "Login failed", Toast.LENGTH_SHORT).show();
                         }
