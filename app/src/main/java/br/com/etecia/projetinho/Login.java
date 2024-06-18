@@ -1,14 +1,16 @@
 package br.com.etecia.projetinho;
 
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
-import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -20,89 +22,91 @@ public class Login extends AppCompatActivity {
     private EditText emailEditText;
     private EditText senhaEditText;
 
-    private Button loginButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        emailEditText = findViewById(R.id.email);
-        senhaEditText = findViewById(R.id.senha);
-        loginButton = findViewById(R.id.BtnLog);
+        emailEditText = findViewById(R.id.edt_email);
+        senhaEditText = findViewById(R.id.edt_senha);
+        Button loginButton = findViewById(R.id.Btn_login);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                attemptLogin();
-            }
-        });
+        loginButton.setOnClickListener(v -> attemptLogin());
     }
 
     private void attemptLogin() {
         final String email = emailEditText.getText().toString().trim();
         final String password = senhaEditText.getText().toString().trim();
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Log.d("LoginActivity", "Starting login process");
-                    URL url = new URL("http://localhost/Projetinho/api/includes/operation.php");
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("POST");
-                    conn.setRequestProperty("Content-Type", "application/json");
-                    conn.setDoOutput(true);
+        if (email.isEmpty() || password.isEmpty()) {
+            runOnUiThread(() -> Toast.makeText(getApplicationContext(), "Email and password cannot be empty", Toast.LENGTH_SHORT).show());
+            return;
+        }
 
-                    JSONObject postData = new JSONObject();
-                    postData.put("email", email);
-                    postData.put("password", password);
+        new Thread(() -> {
+            HttpURLConnection conn = null;
+            BufferedReader reader = null;
+            try {
+                Log.d("LoginActivity", "Starting login process");
+                URL url = new URL("http://192.168.56.1/Projetinho/api/includes/operation.php");
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Content-Type", "application/json");
+                conn.setDoOutput(true);
 
-                    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-                    wr.write(postData.toString());
-                    wr.flush();
-                    wr.close();
+                JSONObject postData = new JSONObject();
+                postData.put("email", email);
+                postData.put("password", password);
 
-                    Log.d("LoginActivity", "Data sent to server: " + postData.toString());
+                OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+                wr.write(postData.toString());
+                wr.flush();
+                wr.close();
 
-                    int responseCode = conn.getResponseCode();
-                    Log.d("LoginActivity", "Response Code: " + responseCode);
+                Log.d("LoginActivity", "Data sent to server: " + postData);
 
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                    StringBuilder sb = new StringBuilder();
-                    String line;
+                int responseCode = conn.getResponseCode();
+                Log.d("LoginActivity", "Response Code: " + responseCode);
 
-                    while ((line = reader.readLine()) != null) {
-                        sb.append(line);
-                    }
+                reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                StringBuilder sb = new StringBuilder();
+                String line;
 
-                    reader.close();
-                    conn.disconnect();
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line);
+                }
 
-                    final String response = sb.toString();
-                    Log.d("LoginActivity", "Response from server: " + response);
+                final String response = sb.toString();
+                Log.d("LoginActivity", "Response from server: " + response);
 
-                    final JSONObject jsonResponse = new JSONObject(response);
+                final JSONObject jsonResponse = new JSONObject(response);
 
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                if (jsonResponse.getBoolean("success")) {
-                                    Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(getApplicationContext(), "Login failed", Toast.LENGTH_SHORT).show();
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                Log.e("LoginActivity", "JSON parsing error", e);
-                            }
+                runOnUiThread(() -> {
+                    try {
+                        if (jsonResponse.getBoolean("success")) {
+                            Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Login failed", Toast.LENGTH_SHORT).show();
                         }
-                    });
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Log.e("LoginActivity", "JSON parsing error", e);
+                    }
+                });
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.e("LoginActivity", "Error during login process", e);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.e("LoginActivity", "Error during login process", e);
+            } finally {
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (conn != null) {
+                    conn.disconnect();
                 }
             }
         }).start();
