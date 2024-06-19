@@ -16,21 +16,21 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tela 1">
+            android:text="@string/Tela01">
 
         </com.google.android.material.tabs.TabItem>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tela 2">
+            android:text="@string/Tela02">
 
         </com.google.android.material.tabs.TabItem>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tela 3">
+            android:text="@string/Tela03">
 
         </com.google.android.material.tabs.TabItem>
 
@@ -57,10 +57,5 @@
         android:layout_height="wrap_content" />
 
 
-    <androidx.recyclerview.widget.RecyclerView
-       android:id="@+id/my_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical" />
 
 </LinearLayout>
